@@ -1,8 +1,10 @@
 package com.codecool.rent_manager.controller;
 
 
+import com.codecool.rent_manager.model.ProcessedProduct;
 import com.codecool.rent_manager.model.Product;
 import com.codecool.rent_manager.model.ProductRepository;
+import com.codecool.rent_manager.service.ProductManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +22,12 @@ public class ProductController {
     @Autowired
     ProductRepository productRepository;
 
+    @Autowired
+    ProductManager productManager;
+
     @GetMapping("/all")
-    public List<Product> getAllProducts() {
-        return productRepository.getAll();
+    public List<ProcessedProduct> getAllProducts() {
+        List<Product> dbResponse = productRepository.getAll();
+        return productManager.connectProductIdWithName(dbResponse);
     }
 }
