@@ -7,17 +7,17 @@ drop table if exists rents;
 
 create table category (id serial not null primary key,name varchar(50));
 
-insert into category(id,name) values(default, 'Betonkeverők');
-insert into category(id,name) values(default, 'Csiszológépek');
-insert into category(id,name) values(default, 'Fúrók');
-insert into category(id,name) values(default, 'Faipari gépek');
-insert into category(id,name) values(default, 'Tömörítőgépek');
-insert into category(id,name) values(default, 'Egyebek');
-insert into category(id,name) values(default, 'Roppantók');
-insert into category(id,name) values(default, 'Áramfejlesztők');
-insert into category(id,name) values(default, 'Betonsimítók');
-insert into category(id,name) values(default, 'Hőlégfúvók');
-insert into category(id,name) values(default, 'Vizesvágók');
+insert into category(id,category_name) values(default, 'Betonkeverők');
+insert into category(id,category_name) values(default, 'Csiszológépek');
+insert into category(id,category_name) values(default, 'Fúrók');
+insert into category(id,category_name) values(default, 'Faipari gépek');
+insert into category(id,category_name) values(default, 'Tömörítőgépek');
+insert into category(id,category_name) values(default, 'Egyebek');
+insert into category(id,category_name) values(default, 'Roppantók');
+insert into category(id,category_name) values(default, 'Áramfejlesztők');
+insert into category(id,category_name) values(default, 'Betonsimítók');
+insert into category(id,category_name) values(default, 'Hőlégfúvók');
+insert into category(id,category_name) values(default, 'Vizesvágók');
 
 create table products(id serial not null primary key, name varchar(50) not null, price integer not null,category_id integer references category(id));
 

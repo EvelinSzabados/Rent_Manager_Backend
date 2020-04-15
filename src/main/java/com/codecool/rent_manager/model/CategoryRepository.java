@@ -5,12 +5,14 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public interface CategoryRepository extends CrudRepository<Category, Long> {
 
-    @Query("SELECT name FROM category WHERE id = :id")
-    String findById(@Param("id") int id);
+    @Query("SELECT id, category_name FROM category WHERE id = :id")
+    Category findById(@Param("id") int id);
 
     @Query("SELECT * FROM category")
-    String getAll();
+    List<Category> getAll();
 }
