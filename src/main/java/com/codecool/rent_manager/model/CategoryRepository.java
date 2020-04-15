@@ -10,4 +10,7 @@ public interface CategoryRepository extends CrudRepository<Category, Long> {
 
     @Query("SELECT name FROM category WHERE id = :id")
     String findById(@Param("id") int id);
+
+    @Query("SELECT * FROM category")
+    String getAll();
 }

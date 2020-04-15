@@ -14,10 +14,6 @@ public class Category { //table: category
         this.categoryName = categoryName;
     }
 
-    public Category create(int id, String categoryName) {
-        return new Category(id, categoryName);
-    }
-
     @Override
     public String toString() {
         return "Category{" +
