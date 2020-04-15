@@ -1,5 +1,6 @@
 package com.codecool.rent_manager.controller;
 
+import com.codecool.rent_manager.model.Category;
 import com.codecool.rent_manager.model.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

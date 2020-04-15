@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 public interface CategoryRepository extends CrudRepository<Category, Long> {
 
-    @Query("SELECT * FROM category WHERE id = :id")
+    @Query("SELECT name FROM category WHERE id = :id")
     String findById(@Param("id") int id);
 }
