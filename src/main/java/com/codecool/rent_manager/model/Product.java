@@ -1,11 +1,14 @@
 package com.codecool.rent_manager.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Product { // table: products
-    private int id;
-    private String name;
-    private int price;
-    private int category_id;
-    private int status_id;
+    private @Getter @Setter int id;
+    private @Getter @Setter String name;
+    private @Getter @Setter int price;
+    private @Getter @Setter int category_id;
+    private @Getter @Setter int status_id;
 
     public Product(int id, String name, int price, int category_id, int status_id) {
         this.id = id;
