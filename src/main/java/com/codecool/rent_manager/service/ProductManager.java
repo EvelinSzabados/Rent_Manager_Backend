@@ -51,4 +51,9 @@ public class ProductManager {
         productRepository.modifyProduct(name, price, categoryId, statusId, id);
 
     }
+
+    public void deleteProduct(@NotNull Product product) {
+        int id = product.getId();
+        productRepository.deleteProduct(id);
+    }
 }

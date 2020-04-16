@@ -28,4 +28,8 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     void modifyProduct(@Param("iname") String name, @Param("iprice") int price,
                      @Param("icategory_id") int categoryId, @Param("istatus_id") int statusId,
                      @Param("id") int productId);
+
+    @Modifying
+    @Query("DELETE FROM products WHERE id= :id")
+    void deleteProduct(@Param("id")int id);
 }
