@@ -32,4 +32,10 @@ public class ProductController { // Controller for products table
         productManager.updateProduct(product);
         return product;
     }
+
+    @DeleteMapping("/delete")
+    public Product deleteProduct(@RequestBody Product product) {
+        productManager.deleteProduct(product);
+        return product;
+    }
 }
