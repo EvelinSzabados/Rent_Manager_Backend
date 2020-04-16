@@ -11,7 +11,7 @@ import java.util.List;
 public class ProductManager {
     /*
     This class is responsible for connecting Products
-    with categories and statuses
+    with categories and statuses, updating, deleting and adding products
      */
 
     @Autowired

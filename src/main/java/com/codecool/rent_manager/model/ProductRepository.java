@@ -14,19 +14,20 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     @Query("SELECT * FROM products")
     List<Product> getAll();
 
+    /* Unused find query that is left here for possible future use
     @Query("SELECT * FROM products WHERE id = :id")
     Product find(@Param("id") int id);
+     */
 
     @Modifying
-    // i stands for input
     @Query("UPDATE products " +
-            "SET name = :iname, " +
-            "price = :iprice, " +
-            "category_id = :icategory_id, " +
-            "status_id = :istatus_id" +
+            "SET name = :name, " +
+            "price = :price, " +
+            "category_id = :category_id, " +
+            "status_id = :status_id" +
             " WHERE id = :id")
-    void modifyProduct(@Param("iname") String name, @Param("iprice") int price,
-                     @Param("icategory_id") int categoryId, @Param("istatus_id") int statusId,
+    void modifyProduct(@Param("name") String name, @Param("price") int price,
+                     @Param("category_id") int categoryId, @Param("status_id") int statusId,
                      @Param("id") int productId);
 
     @Modifying

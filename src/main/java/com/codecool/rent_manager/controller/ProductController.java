@@ -16,9 +16,6 @@ import java.util.List;
 public class ProductController { // Controller for products table
 
     @Autowired
-    ProductRepository productRepository;
-
-    @Autowired
     ProductManager productManager;
 
     @GetMapping("/all")
