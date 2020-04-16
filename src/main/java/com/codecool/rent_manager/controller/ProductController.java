@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001", "http://localhost:8888"})
 @RestController
 @RequestMapping("/product")
 public class ProductController { // Controller for products table
@@ -27,26 +27,16 @@ public class ProductController { // Controller for products table
         return productManager.connectProductIdWithName(dbResponse);
     }
 
-    @GetMapping("/modify?{key}={value}+{id}")
-    public void modifyProduct(@PathVariable("key") String key, @PathVariable("value") int value,
-                              @PathVariable("id") int id) {
+    @PutMapping("/modify")
+    public Product modifyProduct(@RequestBody Product product) {
 
-        Product product = productRepository.find(id);
-        switch (key) {
-            case "price":
-                product.setPrice(value);
-                //the query
-                break;
+        int id = product.getId();
+        String name = product.getName();
+        int price = product.getPrice();
+        int categoryId = product.getCategory_id();
+        int statusId = product.getStatus_id();
+        System.out.println(name);
 
-            case "category_id":
-                product.setCategory_id(value);
-                //
-                break;
-
-            case "status_id":
-                product.setStatus_id(value);
-                //
-                break;
-        }
+        return product;
     }
 }
