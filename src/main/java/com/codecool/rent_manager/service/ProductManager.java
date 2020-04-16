@@ -56,4 +56,12 @@ public class ProductManager {
         int id = product.getId();
         productRepository.deleteProduct(id);
     }
+
+    public void addProduct(Product product) {
+        String name = product.getName();
+        int price = product.getPrice();
+        int categoryId = product.getCategory_id();
+        int statusId = product.getStatus_id();
+        productRepository.addProduct(name, price, categoryId, statusId);
+    }
 }

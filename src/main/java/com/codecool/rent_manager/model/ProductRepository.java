@@ -32,4 +32,10 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     @Modifying
     @Query("DELETE FROM products WHERE id= :id")
     void deleteProduct(@Param("id")int id);
+
+    @Modifying
+    @Query("INSERT INTO products (name, price, category_id, status_id) " +
+            "VALUES (:name, :price, :category_id, :status_id)")
+    void addProduct(@Param("name") String name, @Param("price") int price,
+                    @Param("category_id")int categoryId, @Param("status_id") int statusId);
 }

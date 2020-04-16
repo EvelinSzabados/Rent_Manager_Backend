@@ -36,4 +36,9 @@ public class ProductController { // Controller for products table
     public void deleteProduct(@RequestBody Product product) {
         productManager.deleteProduct(product);
     }
+
+    @PostMapping("/add")
+    public void addProduct(@RequestBody Product product) {
+        productManager.addProduct(product);
+    }
 }
