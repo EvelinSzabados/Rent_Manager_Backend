@@ -7,15 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import javax.annotation.PostConstruct;
-
 @SpringBootApplication
 public class RentManagerApplication {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RentManagerApplication.class);
-
-    @Autowired
-    private CategoryRepository categoryRepository;
+    // Use this logger if you need it
+    //private static final Logger LOGGER = LoggerFactory.getLogger(RentManagerApplication.class);
 
     public static void main(String[] args) {
         SpringApplication.run(RentManagerApplication.class, args);
