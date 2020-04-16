@@ -28,14 +28,12 @@ public class ProductController { // Controller for products table
     }
 
     @PutMapping("/modify")
-    public Product modifyProduct(@RequestBody Product product) {
+    public void modifyProduct(@RequestBody Product product) {
         productManager.updateProduct(product);
-        return product;
     }
 
     @DeleteMapping("/delete")
-    public Product deleteProduct(@RequestBody Product product) {
+    public void deleteProduct(@RequestBody Product product) {
         productManager.deleteProduct(product);
-        return product;
     }
 }
