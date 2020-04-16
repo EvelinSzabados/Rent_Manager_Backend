@@ -11,6 +11,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.Arrays;
 
 // This enables the cors request to go through
+// Without this put and post requests get rejected and throws a 403 error
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {

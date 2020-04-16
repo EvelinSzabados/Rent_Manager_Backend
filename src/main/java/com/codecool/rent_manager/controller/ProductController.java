@@ -29,14 +29,7 @@ public class ProductController { // Controller for products table
 
     @PutMapping("/modify")
     public Product modifyProduct(@RequestBody Product product) {
-
-        int id = product.getId();
-        String name = product.getName();
-        int price = product.getPrice();
-        int categoryId = product.getCategory_id();
-        int statusId = product.getStatus_id();
-        System.out.println(name);
-
+        productManager.updateProduct(product);
         return product;
     }
 }

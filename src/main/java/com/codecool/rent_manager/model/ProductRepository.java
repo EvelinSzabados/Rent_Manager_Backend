@@ -18,6 +18,14 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     Product find(@Param("id") int id);
 
     @Modifying
-    @Query("UPDATE products SET price = :pr WHERE id = :id")
-    void modifyPrice(@Param("pr") int price, @Param("id") int id);
+    // i stands for input
+    @Query("UPDATE products " +
+            "SET name = :iname, " +
+            "price = :iprice, " +
+            "category_id = :icategory_id, " +
+            "status_id = :istatus_id" +
+            " WHERE id = :id")
+    void modifyProduct(@Param("iname") String name, @Param("iprice") int price,
+                     @Param("icategory_id") int categoryId, @Param("istatus_id") int statusId,
+                     @Param("id") int productId);
 }
