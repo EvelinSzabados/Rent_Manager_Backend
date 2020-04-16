@@ -6,7 +6,7 @@ import com.codecool.rent_manager.model.Product;
 import com.codecool.rent_manager.model.StatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +23,9 @@ public class ProductManager {
     @Autowired
     StatusRepository statusRepository;
 
-    public List<ProcessedProduct> connectProductIdWithName(List<Product> inputList) {
+    //TODO: Check out if you can join the products with a single query, then this function will be unnecessary
+
+    public List<ProcessedProduct> connectProductIdWithName(@NotNull List<Product> inputList) {
         List<ProcessedProduct> processedList = new ArrayList<>();
 
         for (Product product : inputList) {
