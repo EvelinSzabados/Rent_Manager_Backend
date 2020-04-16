@@ -1,9 +1,6 @@
 package com.codecool.rent_manager.service;
 
-import com.codecool.rent_manager.model.CategoryRepository;
-import com.codecool.rent_manager.model.ProcessedProduct;
-import com.codecool.rent_manager.model.Product;
-import com.codecool.rent_manager.model.StatusRepository;
+import com.codecool.rent_manager.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.validation.constraints.NotNull;
@@ -23,6 +20,9 @@ public class ProductManager {
     @Autowired
     StatusRepository statusRepository;
 
+    @Autowired
+    ProductRepository productRepository;
+
     //TODO: Check out if you can join the products with a single query, then this function will be unnecessary
 
     public List<ProcessedProduct> connectProductIdWithName(@NotNull List<Product> inputList) {
@@ -40,5 +40,15 @@ public class ProductManager {
         }
 
         return processedList;
+    }
+
+    public void updateProduct(@NotNull Product product) {
+        String name = product.getName();
+        int price = product.getPrice();
+        int categoryId = product.getCategory_id();
+        int statusId = product.getStatus_id();
+        int id = product.getId();
+        productRepository.modifyProduct(name, price, categoryId, statusId, id);
+
     }
 }
