@@ -23,8 +23,7 @@ public class ProductController { // Controller for products table
 
     @GetMapping("/all")
     public List<ProcessedProduct> getAllProducts() {
-        List<Product> dbResponse = productRepository.getAll();
-        return productManager.connectProductIdWithName(dbResponse);
+        return productManager.connectProductIdWithName();
     }
 
     @PutMapping("/modify")

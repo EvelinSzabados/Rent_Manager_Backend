@@ -25,10 +25,12 @@ public class ProductManager {
 
     //TODO: Check out if you can join the products with a single query, then this function will be unnecessary
 
-    public List<ProcessedProduct> connectProductIdWithName(@NotNull List<Product> inputList) {
+    public List<ProcessedProduct> connectProductIdWithName() {
         List<ProcessedProduct> processedList = new ArrayList<>();
 
-        for (Product product : inputList) {
+        List<Product> products = productRepository.getAll();
+
+        for (Product product : products) {
 
             // Find the category object by product's category/status id and then get the object's name
             String categoryName = categoryRepository.findById(product.getCategory_id()).getCategoryName();
