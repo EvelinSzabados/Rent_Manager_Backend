@@ -1,6 +1,9 @@
 package com.codecool.rent_manager.service;
 
 import com.codecool.rent_manager.model.*;
+import com.codecool.rent_manager.repository.CategoryRepository;
+import com.codecool.rent_manager.repository.ProductRepository;
+import com.codecool.rent_manager.repository.StatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.validation.constraints.NotNull;

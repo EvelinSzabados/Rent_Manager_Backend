@@ -2,7 +2,6 @@ package com.codecool.rent_manager.controller;
 
 import com.codecool.rent_manager.model.ProcessedProduct;
 import com.codecool.rent_manager.model.Product;
-import com.codecool.rent_manager.model.ProductRepository;
 import com.codecool.rent_manager.service.ProductManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
