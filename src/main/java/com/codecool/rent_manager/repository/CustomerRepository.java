@@ -1,7 +1,6 @@
 package com.codecool.rent_manager.repository;
 
 import com.codecool.rent_manager.model.Customer;
-import com.codecool.rent_manager.model.Product;
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -9,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface CustomerRepository extends CrudRepository<Product, Long> {
+public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
     @Query("SELECT * FROM customers")
     List<Customer> getAll();
