@@ -39,6 +39,6 @@ create table roles(id serial not null primary key, name varchar(30));
 insert into roles(id,name) values (default, 'admin');
 insert into roles(id,name) values (default, 'employee');
 create table users(id serial not null primary key, username varchar(50), password varchar(200), role_id integer references roles(id));
-create table rents(id serial not null primary key, customer_id integer references customers(id), cost integer not null, date TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP, rented_products varchar(200));
+create table rents(id serial not null primary key, customer_id integer references customers(id), cost integer not null, booking_date TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,start_date DATE not null ,end_date DATE not null);
 
 
