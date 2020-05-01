@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -24,7 +25,7 @@ public class Rent {
     private int cost;
 
     @CreationTimestamp
-    private LocalDate booking_date;
+    private Date booking_date;
 
     private LocalDate start_date;
 
