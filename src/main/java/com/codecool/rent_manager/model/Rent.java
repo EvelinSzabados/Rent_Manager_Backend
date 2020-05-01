@@ -1,6 +1,7 @@
 package com.codecool.rent_manager.model;
 
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -22,6 +23,7 @@ public class Rent {
 
     private int cost;
 
+    @CreationTimestamp
     private LocalDate booking_date;
 
     private LocalDate start_date;

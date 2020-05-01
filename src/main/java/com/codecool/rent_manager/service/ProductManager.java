@@ -19,7 +19,6 @@ public class ProductManager {
         return productRepository.findAll();
     }
 
-
     public void deleteProduct(Product product) {
         productRepository.delete(product);
     }
