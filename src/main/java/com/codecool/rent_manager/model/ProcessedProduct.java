@@ -1,4 +1,4 @@
-package com.codecool.rent_manager.model;
+/*package com.codecool.rent_manager.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -25,4 +25,4 @@ public class ProcessedProduct extends Product {
                 ", statusName='" + statusName + '\'' +
                 '}';
     }
-}
+}*/

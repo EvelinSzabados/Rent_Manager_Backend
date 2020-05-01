@@ -2,14 +2,11 @@ package com.codecool.rent_manager.repository;
 
 
 import com.codecool.rent_manager.model.Status;
-import org.springframework.data.jdbc.repository.query.Query;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Component;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Component
-public interface StatusRepository extends CrudRepository<Status, Long> {
+import org.springframework.stereotype.Repository;
 
-    @Query("SELECT * FROM statuses WHERE id = :id")
-    Status findById(@Param("id") int id);
+@Repository
+public interface StatusRepository extends JpaRepository<Status, Long> {
+
 }

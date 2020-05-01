@@ -1,6 +1,5 @@
 package com.codecool.rent_manager.controller;
 
-import com.codecool.rent_manager.model.ProcessedProduct;
 import com.codecool.rent_manager.model.Product;
 import com.codecool.rent_manager.service.ProductManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,17 +14,17 @@ import java.util.List;
 public class ProductController { // Controller for products table
 
     @Autowired
-    ProductManager productManager;
+    private ProductManager productManager;
 
     @GetMapping("/all")
-    public List<ProcessedProduct> getAllProducts() {
-        return productManager.connectProductIdWithName();
+    public List<Product> getAllProducts() {
+        return productManager.productList();
     }
 
-    @PutMapping("/modify")
+    /*@PutMapping("/modify")
     public void modifyProduct(@RequestBody Product product) {
         productManager.updateProduct(product);
-    }
+    }*/
 
     @DeleteMapping("/delete")
     public void deleteProduct(@RequestBody Product product) {

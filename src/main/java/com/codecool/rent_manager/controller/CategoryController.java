@@ -15,13 +15,10 @@ public class CategoryController { // Controller for category table
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @GetMapping("/find{number}")
-    public Category currentCategory(@PathVariable("number") int id) {
-        return categoryRepository.findById(id);
-    }
+
 
     @GetMapping("/all")
     public List<Category> getAllCategories() {
-        return categoryRepository.getAll();
+        return categoryRepository.findAll();
     }
 }
