@@ -1,23 +1,33 @@
 package com.codecool.rent_manager.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.*;
 
+import javax.persistence.*;
+import java.util.Set;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
+@Table(name = "statuses")
+@Entity
 public class Status { // table: statuses
 
-    private @Getter @Setter int id;
-    private @Getter @Setter String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public Status(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+    private String name;
 
-    @Override
-    public String toString() {
-        return "Status{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
+    @Singular
+    @ToString.Exclude
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "status")
+    @EqualsAndHashCode.Exclude
+    private Set<Product> products;
+
 }

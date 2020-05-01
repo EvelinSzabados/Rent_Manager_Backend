@@ -1,24 +1,32 @@
 package com.codecool.rent_manager.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.*;
 
+import javax.persistence.*;
+import java.util.Set;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
+@Table(name = "category")
+@Entity
 public class Category { //table: category
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    private String category_name;
 
-    private @Getter @Setter int id;
-    private @Getter @Setter String categoryName;
+    @Singular
+    @ToString.Exclude
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+    @EqualsAndHashCode.Exclude
+    private Set<Product> products;
 
-    public Category(int id, String categoryName) {
-        this.id = id;
-        this.categoryName = categoryName;
-    }
-
-    @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", categoryName='" + categoryName + '\'' +
-                '}';
-    }
 }

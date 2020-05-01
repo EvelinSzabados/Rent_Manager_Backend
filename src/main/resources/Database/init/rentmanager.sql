@@ -22,7 +22,7 @@ insert into category(id,category_name) values(default, 'Vizesvágók');
 create table products(id serial not null primary key, name varchar(50) not null, price integer not null,category_id integer references category(id));
 
 --WARNING: Configure this path to your own
-copy products(name,price,category_id) from '/home/norbi/CodeCool/Advanced_Java/2nd_TW/rent_manager/src/main/resources/Database/init/gepek.csv' delimiter ';' csv header;
+copy products(name,price,category_id) from '/home/losonczy/codecool/Advance/rentmanager/Rent_Manager_Backend/src/main/resources/Database/init/gepek.csv' delimiter ';' csv header;
 
 create table statuses(id serial primary key not null, name varchar(50));
 

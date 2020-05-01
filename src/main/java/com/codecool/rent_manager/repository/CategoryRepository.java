@@ -2,18 +2,15 @@ package com.codecool.rent_manager.repository;
 
 import com.codecool.rent_manager.model.Category;
 import org.springframework.data.jdbc.repository.query.Query;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component
-public interface CategoryRepository extends CrudRepository<Category, Long> {
+@Repository
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 
-    @Query("SELECT id, category_name FROM category WHERE id = :id")
-    Category findById(@Param("id") int id);
-
-    @Query("SELECT * FROM category")
-    List<Category> getAll();
 }
