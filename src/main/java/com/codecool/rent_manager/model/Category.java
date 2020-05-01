@@ -23,10 +23,5 @@ public class Category { //table: category
 
     private String category_name;
 
-    @Singular
-    @ToString.Exclude
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
-    @EqualsAndHashCode.Exclude
-    private Set<Product> products;
 
 }

@@ -24,10 +24,5 @@ public class Status { // table: statuses
 
     private String name;
 
-    @Singular
-    @ToString.Exclude
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "status")
-    @EqualsAndHashCode.Exclude
-    private Set<Product> products;
 
 }

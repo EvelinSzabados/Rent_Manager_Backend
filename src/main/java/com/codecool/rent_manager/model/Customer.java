@@ -33,9 +33,9 @@ public class Customer {
     private String phone_number;
 
 
-    @Singular
-    @ToString.Exclude
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
-    @EqualsAndHashCode.Exclude
-    private Set<Rent> rents;
+//    @Singular
+//    @ToString.Exclude
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
+//    @EqualsAndHashCode.Exclude
+//    private Set<Rent> rents;
 }
