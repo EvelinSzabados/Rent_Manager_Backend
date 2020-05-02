@@ -21,10 +21,16 @@ public class ProductController {
         return productManager.productList();
     }
 
+    @GetMapping("/available")
+    public List<Product> getAllAvailableProducts(){
+        return productManager.getAvailableProducts();
+    }
+
     @PutMapping("/modify")
     public void modifyProduct(@RequestBody Product product) {
         productManager.updateProduct(product);
     }
+
 
     @DeleteMapping("/delete")
     public void deleteProduct(@RequestBody Product product) {

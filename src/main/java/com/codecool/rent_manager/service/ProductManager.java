@@ -24,6 +24,10 @@ public class ProductManager {
         productRepository.save(productToEdit);
     }
 
+    public List<Product> getAvailableProducts(){
+        return productRepository.findAllByStatusId(1L);
+    }
+
     public void deleteProduct(Product product) { productRepository.delete(product);}
 
     public void addProduct(Product product) {
