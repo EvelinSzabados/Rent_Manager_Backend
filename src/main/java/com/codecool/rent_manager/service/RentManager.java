@@ -21,6 +21,7 @@ public class RentManager {
     @Autowired
     ProductRepository productRepository;
 
+
     public List<Rent> listEveryRent() {
         return rentRepository.findAll();
     }
