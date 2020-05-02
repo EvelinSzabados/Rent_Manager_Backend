@@ -21,10 +21,10 @@ public class RentController {
         return rentManager.listEveryRent();
     }
 
-    /*@PutMapping("/modify")
+    @PutMapping("/modify")
     public void modifyRent(@RequestBody Rent rent) {
         rentManager.updateRent(rent);
-    }*/
+    }
 
     @DeleteMapping("/delete")
     public void deleteRent(@RequestBody Rent rent) {

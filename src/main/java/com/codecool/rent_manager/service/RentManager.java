@@ -18,6 +18,17 @@ public class RentManager {
         return rentRepository.findAll();
     }
 
+    public void updateRent(Rent rent){
+        Rent rentToEdit = rentRepository.getOne(rent.getId());
+        rentToEdit.setCost(rent.getCost());
+        rentToEdit.setCustomer(rent.getCustomer());
+        rentToEdit.setStart_date(rent.getStart_date());
+        rentToEdit.setEnd_date(rent.getEnd_date());
+
+        rentRepository.save(rentToEdit);
+
+    }
+
     public void deleteRent(Rent rent){rentRepository.delete(rent);}
 
     public void addRent(Rent rent) {
