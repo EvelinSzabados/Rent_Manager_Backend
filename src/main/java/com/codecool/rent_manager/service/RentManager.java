@@ -7,7 +7,6 @@ import com.codecool.rent_manager.model.Status;
 import com.codecool.rent_manager.repository.ProductRepository;
 import com.codecool.rent_manager.repository.RentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,12 +38,20 @@ public class RentManager {
 
     public void deleteRent(Rent rent){rentRepository.delete(rent);}
 
+//    public void calculateRentCost(Rent rent, Optional<Product> productToEdit){
+//        int daysOfRent = rent.getEnd_date().compareTo(rent.getStart_date());
+//        int costPerProduct = productToEdit.get().getPrice() * daysOfRent;
+//        rent.setCost(rent.getCost()+ costPerProduct);
+//    }
+
     public void addRent(Rent rent) {
+
         List<String> rented_products = rent.getRentedProducts();
         for (String actualProduct : rented_products) {
             Optional<Product> productToEdit = productRepository.findById(Long.valueOf(actualProduct));
             Status status = new Status(2L, "Rented");
             productToEdit.get().setStatus(status);
+//            calculateRentCost(rent,productToEdit);
             rentRepository.save(rent);
         }
 
