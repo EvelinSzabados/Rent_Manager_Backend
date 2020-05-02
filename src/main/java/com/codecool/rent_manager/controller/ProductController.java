@@ -21,10 +21,10 @@ public class ProductController {
         return productManager.productList();
     }
 
-    /*@PutMapping("/modify")
+    @PutMapping("/modify")
     public void modifyProduct(@RequestBody Product product) {
         productManager.updateProduct(product);
-    }*/
+    }
 
     @DeleteMapping("/delete")
     public void deleteProduct(@RequestBody Product product) {
