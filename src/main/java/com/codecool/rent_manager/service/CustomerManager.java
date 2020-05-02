@@ -13,11 +13,10 @@ public class CustomerManager {
     @Autowired
     CustomerRepository customerRepository;
 
+
     public List<Customer> listEveryCustomer() {
         return customerRepository.findAll();
     }
-
-
 
     public void deleteCustomer(Customer customer) {
         customerRepository.delete(customer);

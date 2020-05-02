@@ -18,9 +18,7 @@ public class RentManager {
         return rentRepository.findAll();
     }
 
-
-    public void deleteRent(Rent rent){rentRepository.delete(rent);
-    }
+    public void deleteRent(Rent rent){rentRepository.delete(rent);}
 
     public void addRent(Rent rent) {
         rentRepository.save(rent);
