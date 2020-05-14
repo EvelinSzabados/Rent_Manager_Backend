@@ -1,5 +1,4 @@
 package com.codecool.rent_manager.model;
-
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,7 +9,7 @@ import javax.persistence.*;
 @Builder
 @Table(name = "products")
 @Entity
-public class Product { // table: products
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -11,7 +11,7 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001", "http://localhost:8888"})
 @RestController
 @RequestMapping("/product")
-public class ProductController { // Controller for products table
+public class ProductController {
 
     @Autowired
     private ProductManager productManager;
@@ -21,10 +21,16 @@ public class ProductController { // Controller for products table
         return productManager.productList();
     }
 
-    /*@PutMapping("/modify")
+    @GetMapping("/available")
+    public List<Product> getAllAvailableProducts(){
+        return productManager.getAvailableProducts();
+    }
+
+    @PutMapping("/modify")
     public void modifyProduct(@RequestBody Product product) {
         productManager.updateProduct(product);
-    }*/
+    }
+
 
     @DeleteMapping("/delete")
     public void deleteProduct(@RequestBody Product product) {

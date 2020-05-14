@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Set;
+
 
 @Data
 @NoArgsConstructor
@@ -32,10 +32,4 @@ public class Customer {
 
     private String phone_number;
 
-
-    @Singular
-    @ToString.Exclude
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
-    @EqualsAndHashCode.Exclude
-    private Set<Rent> rents;
 }

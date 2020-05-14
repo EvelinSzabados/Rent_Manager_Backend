@@ -10,11 +10,10 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
 @RestController
 @RequestMapping("/category")
-public class CategoryController { // Controller for category table
+public class CategoryController {
 
     @Autowired
     private CategoryRepository categoryRepository;
-
 
 
     @GetMapping("/all")

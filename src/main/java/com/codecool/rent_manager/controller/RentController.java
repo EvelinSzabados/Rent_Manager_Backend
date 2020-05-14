@@ -1,6 +1,5 @@
 package com.codecool.rent_manager.controller;
 
-
 import com.codecool.rent_manager.model.Rent;
 import com.codecool.rent_manager.service.RentManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +21,10 @@ public class RentController {
         return rentManager.listEveryRent();
     }
 
-    /*@PutMapping("/modify")
+    @PutMapping("/modify")
     public void modifyRent(@RequestBody Rent rent) {
         rentManager.updateRent(rent);
-    }*/
+    }
 
     @DeleteMapping("/delete")
     public void deleteRent(@RequestBody Rent rent) {

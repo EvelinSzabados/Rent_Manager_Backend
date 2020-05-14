@@ -1,9 +1,13 @@
 package com.codecool.rent_manager.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.*;
 
 @Data
 @NoArgsConstructor
@@ -11,6 +15,9 @@ import java.time.LocalDate;
 @Builder
 @Table(name = "rents")
 @Entity
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "id")
 public class Rent {
 
     @Id
@@ -22,12 +29,18 @@ public class Rent {
 
     private int cost;
 
-    private LocalDate booking_date;
+    @CreationTimestamp
+    private Date booking_date;
 
     private LocalDate start_date;
 
     private LocalDate end_date;
 
+    @ElementCollection
+    @Singular
+    @CollectionTable(name = "rented_products", joinColumns = @JoinColumn(name = "rent_id"))
+    @Column(name = "products")
+    private List<String> rentedProducts;
 
 }
 
