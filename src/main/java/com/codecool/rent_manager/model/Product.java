@@ -1,31 +1,26 @@
 package com.codecool.rent_manager.model;
+import lombok.*;
 
-import lombok.Getter;
-import lombok.Setter;
+import javax.persistence.*;
 
-public class Product { // table: products
-    protected @Getter @Setter int id;
-    protected @Getter @Setter String name;
-    protected @Getter @Setter int price;
-    protected @Getter @Setter int category_id;
-    protected @Getter @Setter int status_id;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Table(name = "products")
+@Entity
+public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public Product(int id, String name, int price, int category_id, int status_id) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.category_id = category_id;
-        this.status_id = status_id;
-    }
+    private String name;
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", category_id=" + category_id +
-                ", status_id=" + status_id +
-                '}';
-    }
+    private int price;
+
+    @ManyToOne
+    private Category category;
+
+    @ManyToOne
+    private Status status;
 }

@@ -20,7 +20,7 @@ public class CustomerController {
         return customerManager.listEveryCustomer();
     }
 
-    @PutMapping("/modify")
+   @PutMapping("/modify")
     public void modifyCustomer(@RequestBody Customer customer) { customerManager.updateCustomer(customer); }
 
     @DeleteMapping("/delete")

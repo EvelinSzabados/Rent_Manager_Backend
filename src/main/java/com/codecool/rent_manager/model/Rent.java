@@ -1,38 +1,47 @@
 package com.codecool.rent_manager.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
-import java.util.Date;
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.*;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Table(name = "rents")
+@Entity
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "id")
 public class Rent {
-    protected @Getter @Setter int id;
-    protected @Getter @Setter int customer_id;
-    protected @Getter @Setter int cost;
-    protected @Getter @Setter Date booking_date;
-    protected @Getter @Setter Date start_date;
-    protected @Getter @Setter Date end_date;
 
-    public Rent(int id, int customer_id, int cost, Date booking_date, Date start_date, Date end_date) {
-        this.id = id;
-        this.customer_id = customer_id;
-        this.cost = cost;
-        this.booking_date = booking_date;
-        this.start_date = start_date;
-        this.end_date = end_date;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Override
-    public String toString() {
-        return "Rent{" +
-                "id=" + id +
-                ", customer_id=" + customer_id +
-                ", cost=" + cost +
-                ", booking_date=" + booking_date +
-                ", start_date=" + start_date +
-                ", end_date=" + end_date +
-                '}';
-    }
+    @ManyToOne
+    private Customer customer;
+
+    private int cost;
+
+    @CreationTimestamp
+    private Date booking_date;
+
+    private LocalDate start_date;
+
+    private LocalDate end_date;
+
+    @ElementCollection
+    @Singular
+    @CollectionTable(name = "rented_products", joinColumns = @JoinColumn(name = "rent_id"))
+    @Column(name = "products")
+    private List<String> rentedProducts;
+
 }
 
 

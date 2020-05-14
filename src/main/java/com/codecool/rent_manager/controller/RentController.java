@@ -1,6 +1,5 @@
 package com.codecool.rent_manager.controller;
 
-
 import com.codecool.rent_manager.model.Rent;
 import com.codecool.rent_manager.service.RentManager;
 import org.springframework.beans.factory.annotation.Autowired;

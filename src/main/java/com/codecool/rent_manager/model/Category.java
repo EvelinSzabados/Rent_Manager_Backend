@@ -1,24 +1,18 @@
 package com.codecool.rent_manager.model;
+import lombok.*;
 
-import lombok.Getter;
-import lombok.Setter;
+import javax.persistence.*;
 
-public class Category { //table: category
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Table(name = "category")
+@Entity
+public class Category {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String category_name;
 
-
-    private @Getter @Setter int id;
-    private @Getter @Setter String categoryName;
-
-    public Category(int id, String categoryName) {
-        this.id = id;
-        this.categoryName = categoryName;
-    }
-
-    @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", categoryName='" + categoryName + '\'' +
-                '}';
-    }
 }

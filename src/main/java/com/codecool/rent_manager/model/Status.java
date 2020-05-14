@@ -1,23 +1,20 @@
 package com.codecool.rent_manager.model;
+import lombok.*;
+import javax.persistence.*;
 
-import lombok.Getter;
-import lombok.Setter;
 
-public class Status { // table: statuses
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Table(name = "statuses")
+@Entity
+public class Status {
 
-    private @Getter @Setter int id;
-    private @Getter @Setter String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
 
-    public Status(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 
-    @Override
-    public String toString() {
-        return "Status{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }
