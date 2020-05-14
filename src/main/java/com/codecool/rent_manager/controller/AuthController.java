@@ -40,7 +40,7 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody UserCredentials appUser) {
-        userService.register(appUser);
+        userService.register(appUser.getUsername(),appUser.getPassword());
         return ResponseEntity.status(HttpStatus.CREATED).body(appUser.getUsername());
     }
 
@@ -55,6 +55,7 @@ public class AuthController {
                 .build();
         response.addHeader("Set-Cookie", cookie.toString());
     }
+
 
 }
 

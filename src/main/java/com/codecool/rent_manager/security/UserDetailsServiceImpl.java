@@ -17,13 +17,14 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
+
     private final AppUserRepository appUserRepository;
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser appUser = appUserRepository
-                .findByUsername(username);
+                .findByUserName(username);
         if(appUser == null){
             throw new UsernameNotFoundException("User not found: " + username);
         }
