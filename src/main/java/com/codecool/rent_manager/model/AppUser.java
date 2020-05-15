@@ -18,7 +18,6 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name="username")
-    @UniqueElements
     private String userName;
 
     @NotBlank
@@ -29,5 +28,8 @@ public class AppUser {
     @Singular
     @Column(name="role")
     @CollectionTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+
+
 }

@@ -5,7 +5,6 @@ import com.codecool.rent_manager.model.Role;
 import com.codecool.rent_manager.model.UserCredentials;
 import com.codecool.rent_manager.repository.AppUserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +33,7 @@ public class UserService {
                 AppUser.builder()
                         .userName(username)
                         .hashedPassword(encoder.encode(password))
-                        .role(Role.ADMIN)
+                        .role(Role.USER)
                         .build()
         );
     }

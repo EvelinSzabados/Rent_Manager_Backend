@@ -1,5 +1,6 @@
 package com.codecool.rent_manager.security;
 
+import com.codecool.rent_manager.model.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +18,9 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
+
+import static com.codecool.rent_manager.model.Role.ADMIN;
+import static com.codecool.rent_manager.model.Role.USER;
 
 @Configuration
 @RequiredArgsConstructor
@@ -53,8 +57,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/addUser").permitAll()
-                .anyRequest().permitAll()
+                .antMatchers("/auth/login").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
