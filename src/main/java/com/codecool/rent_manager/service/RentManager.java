@@ -9,6 +9,8 @@ import com.codecool.rent_manager.repository.RentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,8 +24,36 @@ public class RentManager {
     ProductRepository productRepository;
 
 
+
     public List<Rent> listEveryRent() {
         return rentRepository.findAll();
+    }
+
+    public List<String> listEveryRentedProduct(){
+        List<String> allRentedProducts = new ArrayList<>();
+        List<Rent> allRents = rentRepository.findAll();
+        for(Rent rent: allRents){
+            allRentedProducts.addAll(rent.getRentedProducts());
+        }
+        return allRentedProducts;
+    }
+    public  HashMap<String, Integer> createCategoryChart(){
+        List<String> allRentedProducts = listEveryRentedProduct();
+        HashMap<String, Integer> chartData = new HashMap<>();
+        int value = 1;
+        for(String id: allRentedProducts){
+            Optional<Product> product = productRepository.findById(Long.valueOf(id));
+            String categoryName = product.get().getCategory().getCategory_name();
+            if(chartData.containsKey(categoryName)){
+                chartData.replace(categoryName,chartData.get(categoryName)+1);
+            }else{
+                chartData.put(categoryName,value);
+            }
+
+
+        }
+        return chartData;
+
     }
 
     public void updateRent(Rent rent){
