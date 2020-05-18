@@ -18,17 +18,17 @@ public class UserService {
     private final AppUserRepository appUserRepository;
     private final PasswordEncoder encoder;
 
-    public AppUser register(String username, String password, Set<Role> roles) {
+    public AppUser register(String username, String password, Role role) {
         return appUserRepository.save(
                 AppUser.builder()
                         .userName(username)
                         .hashedPassword(encoder.encode(password))
-                        .roles(roles)
+                        .role(role)
                         .build()
         );
     }
 
-    public AppUser register(String username, String password) {
+    public AppUser registerr(String username, String password) {
         return appUserRepository.save(
                 AppUser.builder()
                         .userName(username)
@@ -39,7 +39,7 @@ public class UserService {
     }
 
     public AppUser register (UserCredentials userCredentials) {
-        return register(userCredentials.getUsername(), userCredentials.getPassword());
+        return registerr(userCredentials.getUsername(), userCredentials.getPassword());
     }
 
 }

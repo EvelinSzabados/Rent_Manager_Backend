@@ -1,9 +1,14 @@
 package com.codecool.rent_manager.controller;
 
+import com.codecool.rent_manager.model.AppUser;
+import com.codecool.rent_manager.model.Role;
+import com.codecool.rent_manager.model.SignupCredentials;
 import com.codecool.rent_manager.model.UserCredentials;
+import com.codecool.rent_manager.repository.AppUserRepository;
 import com.codecool.rent_manager.security.JwtUtil;
 import com.codecool.rent_manager.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
@@ -29,22 +34,25 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
     private final UserService userService;
+    @Autowired
+    AppUserRepository appUserRepository;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserCredentials appUser, HttpServletResponse response) {
+    public ResponseEntity<AppUser> login(@RequestBody UserCredentials appUser, HttpServletResponse response) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 appUser.getUsername(),
                 appUser.getPassword()
         ));
         String jwtToken = jwtUtil.generateToken(authentication);
         addTokenToCookie(response, jwtToken);
-        return ResponseEntity.ok().body(appUser.getUsername());
+        AppUser userInDb = appUserRepository.findByUserName(appUser.getUsername());
+        return ResponseEntity.ok().body(userInDb);
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<String> signup(@RequestBody UserCredentials appUser) {
-        userService.register(appUser.getUsername(),appUser.getPassword());
-        return ResponseEntity.status(HttpStatus.CREATED).body(appUser.getUsername());
+    public ResponseEntity<String> signup(@RequestBody SignupCredentials credentials) {
+        userService.register(credentials.getUsername(),credentials.getPassword(),credentials.getRole());
+        return ResponseEntity.status(HttpStatus.CREATED).body(credentials.getUsername());
     }
 
     private void addTokenToCookie(HttpServletResponse response, String token) {
@@ -93,9 +101,10 @@ public class AuthController {
     }
 
     @GetMapping("/getUser")
-    public String getUser(){
+    public AppUser getUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getPrincipal().toString();
+        AppUser userInDb = appUserRepository.findByUserName(authentication.getPrincipal().toString());
+        return userInDb;
     }
 
 
