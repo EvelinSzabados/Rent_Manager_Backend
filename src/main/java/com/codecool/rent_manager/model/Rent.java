@@ -42,6 +42,8 @@ public class Rent {
     @Column(name = "products")
     private List<String> rentedProducts;
 
+    @Transient
+    private List<RentedProducts> rentedProductsDetails;
 }
 
 

@@ -3,6 +3,7 @@ package com.codecool.rent_manager.service;
 
 import com.codecool.rent_manager.model.Product;
 import com.codecool.rent_manager.model.Rent;
+import com.codecool.rent_manager.model.RentedProducts;
 import com.codecool.rent_manager.model.Status;
 import com.codecool.rent_manager.repository.ProductRepository;
 import com.codecool.rent_manager.repository.RentRepository;
@@ -26,7 +27,25 @@ public class RentManager {
 
 
     public List<Rent> listEveryRent() {
-        return rentRepository.findAll();
+        List<Rent> allRent= rentRepository.findAll();
+
+
+        for(Rent rent: allRent){
+            List<RentedProducts> rentedProductsPerRent = new ArrayList<>();
+            for(String prod: rent.getRentedProducts()){
+
+                    Optional<Product> product = productRepository.findById(Long.valueOf(prod));
+                    RentedProducts rentedProd = RentedProducts.builder().id(product.get().getId())
+                            .cost(product.get().getPrice())
+                            .name(product.get().getName()).build();
+                    rentedProductsPerRent.add(rentedProd);
+
+                rent.setRentedProductsDetails(rentedProductsPerRent);
+            }
+
+        }
+
+        return allRent;
     }
 
     public List<String> listEveryRentedProduct(){
