@@ -10,10 +10,8 @@ import com.codecool.rent_manager.repository.RentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Service
 public class RentManager {
@@ -104,6 +102,14 @@ public class RentManager {
 //            calculateRentCost(rent,productToEdit);
             rentRepository.save(rent);
         }
+
+    }
+
+    public List<Rent> findByEndDate(){
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+        formatter.format(date);
+        return rentRepository.findAllEnd_dateBeforeAndEnd_dateIsLessThanEqual(date);
 
     }
 }

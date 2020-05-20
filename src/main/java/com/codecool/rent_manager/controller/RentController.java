@@ -39,4 +39,7 @@ public class RentController {
 
     @PostMapping("/add")
     public void addRent(@RequestBody Rent rent) { rentManager.addRent(rent); }
+
+    @GetMapping("/notification")
+    public List<Rent> getNotification(){return rentManager.findByEndDate();}
 }
