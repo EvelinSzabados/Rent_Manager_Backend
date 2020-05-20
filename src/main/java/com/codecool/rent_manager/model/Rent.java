@@ -34,7 +34,8 @@ public class Rent {
 
     private LocalDate start_date;
 
-    private LocalDate end_date;
+    @Column(name="enddate")
+    private LocalDate endDate;
 
     @ElementCollection
     @Singular
