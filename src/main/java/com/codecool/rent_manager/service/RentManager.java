@@ -26,22 +26,7 @@ public class RentManager {
 
     public List<Rent> listEveryRent() {
         List<Rent> allRent = rentRepository.findAll();
-
-
-        for (Rent rent : allRent) {
-            List<RentedProducts> rentedProductsPerRent = new ArrayList<>();
-            for (String prod : rent.getRentedProducts()) {
-
-                Optional<Product> product = productRepository.findById(Long.valueOf(prod));
-                RentedProducts rentedProd = RentedProducts.builder().id(product.get().getId())
-                        .cost(product.get().getPrice())
-                        .name(product.get().getName()).build();
-                rentedProductsPerRent.add(rentedProd);
-
-                rent.setRentedProductsDetails(rentedProductsPerRent);
-            }
-
-        }
+        addProductDetailsToRent(allRent,false);
 
         return allRent;
     }
@@ -110,7 +95,49 @@ public class RentManager {
 
     public List<Rent> findByEndDate() {
         LocalDate date = LocalDate.now();
-        return rentRepository.findByEndDateIsLessThanEqual(date);
+        List<Rent> allRent = rentRepository.findByEndDateIsLessThanEqual(date);
 
+        addProductDetailsToRent(allRent,true);
+        List<Rent> filteredRents = new ArrayList<>();
+        for(Rent rent: allRent){
+            if(rent.getRentedProductsDetails() != null){
+                filteredRents.add(rent);
+            }
+        }
+
+
+        return filteredRents;
+
+    }
+
+    private void addProductDetailsToRent(List<Rent> allRent,boolean statusAvailable) {
+        for (Rent rent : allRent) {
+            List<RentedProducts> rentedProductsPerRent = new ArrayList<>();
+            for (String prod : rent.getRentedProducts()) {
+
+                Optional<Product> product = productRepository.findById(Long.valueOf(prod));
+                if(statusAvailable){
+                    if(product.get().getStatus().getId() != 1){
+                        RentedProducts rentedProd = RentedProducts.builder().id(product.get().getId())
+                                .cost(product.get().getPrice())
+                                .name(product.get().getName()).build();
+                        rentedProductsPerRent.add(rentedProd);
+                        if(rentedProductsPerRent.size() !=0){
+
+                        }
+                        rent.setRentedProductsDetails(rentedProductsPerRent);
+                    }
+                }else{
+                    RentedProducts rentedProd = RentedProducts.builder().id(product.get().getId())
+                            .cost(product.get().getPrice())
+                            .name(product.get().getName()).build();
+                    rentedProductsPerRent.add(rentedProd);
+
+                    rent.setRentedProductsDetails(rentedProductsPerRent);
+                }
+
+            }
+
+        }
     }
 }

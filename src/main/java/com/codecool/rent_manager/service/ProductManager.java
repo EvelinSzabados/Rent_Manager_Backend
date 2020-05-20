@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductManager {
@@ -31,6 +32,12 @@ public class ProductManager {
     public void deleteProduct(Product product) { productRepository.delete(product);}
 
     public void addProduct(Product product) {
+        productRepository.save(product);
+    }
+
+    public void setProductStatusAvailable(Long id){
+        Product product = productRepository.getOne(id);
+        product.setStatus(Status.builder().id(1L).name("Available").build());
         productRepository.save(product);
     }
 }

@@ -41,4 +41,7 @@ public class ProductController {
     public void addProduct(@RequestBody Product product) {
         productManager.addProduct(product);
     }
+
+    @PostMapping("/setStatus/{id}")
+    public void setProductStatusAvailable(@PathVariable Long id){productManager.setProductStatusAvailable(id);}
 }
