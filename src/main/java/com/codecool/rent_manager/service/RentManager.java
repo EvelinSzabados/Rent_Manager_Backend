@@ -100,11 +100,11 @@ public class RentManager {
         addProductDetailsToRent(allRent,true);
         List<Rent> filteredRents = new ArrayList<>();
         for(Rent rent: allRent){
-            if(rent.getRentedProductsDetails() != null){
+            if(rent.getRentedProductsDetails() != null && !rent.isBack()){
                 filteredRents.add(rent);
+
             }
         }
-
 
         return filteredRents;
 
@@ -120,7 +120,9 @@ public class RentManager {
                     if(product.get().getStatus().getId() != 1){
                         RentedProducts rentedProd = RentedProducts.builder().id(product.get().getId())
                                 .cost(product.get().getPrice())
-                                .name(product.get().getName()).build();
+                                .name(product.get().getName())
+                                .status(product.get().getStatus())
+                                .build();
                         rentedProductsPerRent.add(rentedProd);
                         if(rentedProductsPerRent.size() !=0){
 
@@ -130,7 +132,7 @@ public class RentManager {
                 }else{
                     RentedProducts rentedProd = RentedProducts.builder().id(product.get().getId())
                             .cost(product.get().getPrice())
-                            .name(product.get().getName()).build();
+                            .name(product.get().getName()).status(product.get().getStatus()).build();
                     rentedProductsPerRent.add(rentedProd);
 
                     rent.setRentedProductsDetails(rentedProductsPerRent);
@@ -140,4 +142,5 @@ public class RentManager {
 
         }
     }
+
 }

@@ -13,4 +13,5 @@ public class RentedProducts {
     private Long id;
     private String name;
     private int cost;
+    private Status status;
 }

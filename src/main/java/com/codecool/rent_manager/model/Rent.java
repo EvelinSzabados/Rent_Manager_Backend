@@ -15,9 +15,6 @@ import java.util.*;
 @Builder
 @Table(name = "rents")
 @Entity
-//@JsonIdentityInfo(
-//        generator = ObjectIdGenerators.PropertyGenerator.class,
-//        property = "id")
 public class Rent {
 
     @Id
@@ -34,6 +31,9 @@ public class Rent {
 
     private LocalDate start_date;
 
+    @Column(name="isback")
+    private boolean isBack;
+
     @Column(name="enddate")
     private LocalDate endDate;
 
@@ -45,6 +45,7 @@ public class Rent {
 
     @Transient
     private List<RentedProducts> rentedProductsDetails;
+
 }
 
 
