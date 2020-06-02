@@ -21,9 +21,12 @@ public class Product {
     private String name;
 
     private int price;
-    @Column(name = "category_id")
-    private String category;
+
+    private int category_id;
 
     @ManyToOne
     private Status status;
+
+    @Transient
+    private Category category;
 }

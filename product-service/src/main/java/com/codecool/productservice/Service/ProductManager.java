@@ -1,6 +1,8 @@
 package com.codecool.productservice.Service;
 
+import com.codecool.productservice.Model.Category;
 import com.codecool.productservice.Model.Product;
+import com.codecool.productservice.Repository.CategoryCaller;
 import com.codecool.productservice.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,24 +16,39 @@ public class ProductManager {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private CategoryCaller categoryCaller;
+
 //    @Autowired
 //    private RentRepository rentRepository;
 
     public List<Product> productList() {
+        List<Product> allProduct = productRepository.findAll();
+        for (Product product : allProduct) {
+            Category category = categoryCaller.getCategoryById("/" + product.getCategory_id());
+            product.setCategory(category);
+        }
+
+
         return productRepository.findAll();
     }
+
 
     public void updateProduct(Product product) {
         Product productToEdit = productRepository.getOne(product.getId());
         productToEdit.setName(product.getName());
-        productToEdit.setCategory(product.getCategory());
         productToEdit.setPrice(product.getPrice());
         productToEdit.setStatus(product.getStatus());
         productRepository.save(productToEdit);
     }
 
     public List<Product> getAvailableProducts() {
-        return productRepository.findAllByStatusId(1L);
+        List<Product> allProduct = productRepository.findAllByStatusId(1L);
+        for (Product product : allProduct) {
+            Category category = categoryCaller.getCategoryById("/" + product.getCategory_id());
+            product.setCategory(category);
+        }
+        return allProduct;
     }
 
     public void deleteProduct(Product product) {
