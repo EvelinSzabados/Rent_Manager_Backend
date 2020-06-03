@@ -2,8 +2,10 @@ package com.codecool.rentservice.Service;
 
 import com.codecool.rentservice.Model.Customer;
 import com.codecool.rentservice.Model.Rent;
+import com.codecool.rentservice.Model.RentedProducts;
 import com.codecool.rentservice.Model.Status;
 import com.codecool.rentservice.Repository.CustomerCaller;
+import com.codecool.rentservice.Repository.ProductCaller;
 import com.codecool.rentservice.Repository.RentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,9 @@ public class RentManager {
 
     @Autowired
     CustomerCaller customerCaller;
+
+    @Autowired
+    ProductCaller productCaller;
 
 
     public List<Rent> listEveryRent() {
@@ -82,18 +87,15 @@ public class RentManager {
     }
 
 
-//    public void addRent(Rent rent) {
-//
-//        List<String> rented_products = rent.getRentedProducts();
-//        for (String actualProduct : rented_products) {
-//            Optional<Product> productToEdit = productRepository.findById(Long.valueOf(actualProduct));
-//            Status status = new Status(2L, "Rented");
-//            productToEdit.get().setStatus(status);
-////            calculateRentCost(rent,productToEdit);
-//            rentRepository.save(rent);
-//        }
-//
-//    }
+    public void addRent(Rent rent) {
+
+        List<String> rented_products = rent.getRentedProducts();
+        for (String actualProduct : rented_products) {
+            productCaller.updateProduct("/modify", Long.valueOf(actualProduct));
+            rentRepository.save(rent);
+        }
+
+    }
 
     public List<Rent> findByEndDate() {
         LocalDate date = LocalDate.now();

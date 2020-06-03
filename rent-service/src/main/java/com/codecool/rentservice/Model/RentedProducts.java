@@ -14,8 +14,10 @@ import java.beans.Transient;
 public class RentedProducts {
     private Long id;
     private String name;
+    private int category_id;
     private int cost;
     private Status status;
+
 
 }
 

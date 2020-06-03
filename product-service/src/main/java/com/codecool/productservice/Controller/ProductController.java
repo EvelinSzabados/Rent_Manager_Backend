@@ -1,11 +1,14 @@
 package com.codecool.productservice.Controller;
 
 import com.codecool.productservice.Model.Product;
+import com.codecool.productservice.Model.Status;
+import com.codecool.productservice.Repository.ProductRepository;
 import com.codecool.productservice.Service.ProductManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001", "http://localhost:8888"})
 @RestController
@@ -14,6 +17,8 @@ public class ProductController {
 
     @Autowired
     private ProductManager productManager;
+    @Autowired
+    private ProductRepository productRepository;
 
     @GetMapping("/all")
     public List<Product> getAllProducts() {
@@ -30,6 +35,10 @@ public class ProductController {
         productManager.updateProduct(product);
     }
 
+    @GetMapping("/{id}")
+    public Optional<Product> getProductById(@PathVariable Long id){
+        return productRepository.findById(id);
+    }
 
     @DeleteMapping("/delete")
     public void deleteProduct(@RequestBody Product product) {
