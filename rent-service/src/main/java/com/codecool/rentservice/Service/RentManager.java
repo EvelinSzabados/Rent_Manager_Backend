@@ -2,6 +2,7 @@ package com.codecool.rentservice.Service;
 
 import com.codecool.rentservice.Model.Customer;
 import com.codecool.rentservice.Model.Rent;
+import com.codecool.rentservice.Model.Status;
 import com.codecool.rentservice.Repository.CustomerCaller;
 import com.codecool.rentservice.Repository.RentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,16 +66,16 @@ public class RentManager {
 //
 //    }
 
-//    public void updateRent(Rent rent) {
-//        Rent rentToEdit = rentRepository.getOne(rent.getId());
-//        rentToEdit.setCost(rent.getCost());
-//        rentToEdit.setCustomer(rent.getCustomer());
-//        rentToEdit.setStart_date(rent.getStart_date());
-//        rentToEdit.setEndDate(rent.getEndDate());
-//
-//        rentRepository.save(rentToEdit);
-//
-//    }
+    public void updateRent(Rent rent) {
+        Rent rentToEdit = rentRepository.getOne(rent.getId());
+        rentToEdit.setCost(rent.getCost());
+        rentToEdit.setCustomer(rent.getCustomer());
+        rentToEdit.setStart_date(rent.getStart_date());
+        rentToEdit.setEndDate(rent.getEndDate());
+        customerCaller.updateCustomer(rent.getCustomer());
+        rentRepository.save(rentToEdit);
+
+    }
 
     public void deleteRent(Rent rent) {
         rentRepository.delete(rent);

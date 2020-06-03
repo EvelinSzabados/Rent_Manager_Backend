@@ -25,10 +25,10 @@ public class RentController {
 //    @GetMapping("/rentedProducts")
 //    public HashMap<String, Integer> getRentedProducts(){return rentManager.createCategoryChart();}
 
-//    @PutMapping("/modify")
-//    public void modifyRent(@RequestBody Rent rent) {
-//        rentManager.updateRent(rent);
-//    }
+    @PutMapping("/modify")
+    public void modifyRent(@RequestBody Rent rent) {
+        rentManager.updateRent(rent);
+    }
 
     @DeleteMapping("/delete")
     public void deleteRent(@RequestBody Rent rent) {
