@@ -36,7 +36,7 @@ public class CustomerController {
 
     @DeleteMapping("/delete")
     public void deleteCustomer(@RequestBody Customer customer) {
-        // rentRepository.deleteByCustomer(customer);
+        //TODO: rentRepository.deleteByCustomer(customer);
         customerService.deleteCustomer(customer);
     }
 
