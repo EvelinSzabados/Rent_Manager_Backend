@@ -51,25 +51,25 @@ public class RentManager {
         //TODO: refactor to stream
         return allRentedProducts;
     }
-//
-//    public HashMap<String, Integer> createCategoryChart() {
-//        List<String> allRentedProducts = listEveryRentedProduct();
-//        HashMap<String, Integer> chartData = new HashMap<>();
-//        int value = 1;
-//        for (String id : allRentedProducts) {
-//            Optional<Product> product = productRepository.findById(Long.valueOf(id));
-//            String categoryName = product.get().getCategory().getCategory_name();
-//            if (chartData.containsKey(categoryName)) {
-//                chartData.replace(categoryName, chartData.get(categoryName) + 1);
-//            } else {
-//                chartData.put(categoryName, value);
-//            }
-//
-//
-//        }
-//        return chartData;
-//
-//    }
+
+    public HashMap<String, Integer> createCategoryChart() {
+        List<String> allRentedProducts = listEveryRentedProduct();
+        HashMap<String, Integer> chartData = new HashMap<>();
+        int value = 1;
+        for (String id : allRentedProducts) {
+            RentedProducts product = productCaller.getRentedProductByRentId("/" + Long.valueOf(id));
+            String categoryName = product.getCategory().getCategory_name();
+            if (chartData.containsKey(categoryName)) {
+                chartData.replace(categoryName, chartData.get(categoryName) + 1);
+            } else {
+                chartData.put(categoryName, value);
+            }
+
+
+        }
+        return chartData;
+
+    }
 
     public void updateRent(Rent rent) {
         Rent rentToEdit = rentRepository.getOne(rent.getId());
@@ -101,7 +101,7 @@ public class RentManager {
         LocalDate date = LocalDate.now();
         List<Rent> allRent = rentRepository.findByEndDateIsLessThanEqual(date);
 
-//        addProductDetailsToRent(allRent,true);
+        addProductDetailsToRent(allRent,true);
         List<Rent> filteredRents = new ArrayList<>();
         for(Rent rent: allRent){
             if(rent.getRentedProductsDetails() != null && !rent.isBack()){
@@ -120,16 +120,9 @@ public class RentManager {
             for (String prod : rent.getRentedProducts()) {
 
                 RentedProducts product = productCaller.getRentedProductByRentId("/"+Long.valueOf(prod));
-//                Optional<Product> product = productRepository.findById(Long.valueOf(prod));
                 if(statusAvailable){
                     if(product.getStatus().getId() != 1){
                         rentedProductsPerRent.add(product);
-//                        RentedProducts rentedProd = RentedProducts.builder().id(product.get().getId())
-//                                .cost(product.get().getPrice())
-//                                .name(product.get().getName())
-//                                .status(product.get().getStatus())
-//                                .build();
-//                        rentedProductsPerRent.add(rentedProd);
                         if(rentedProductsPerRent.size() !=0){
                             rent.setRentedProductsDetails(rentedProductsPerRent);
                         }
