@@ -2,7 +2,6 @@ package com.codecool.productservice.Controller;
 
 import com.codecool.productservice.Model.Category;
 import com.codecool.productservice.Model.Product;
-import com.codecool.productservice.Model.Status;
 import com.codecool.productservice.Repository.CategoryCaller;
 import com.codecool.productservice.Repository.ProductRepository;
 import com.codecool.productservice.Service.ProductManager;
@@ -57,7 +56,5 @@ public class ProductController {
     public void addProduct(@RequestBody Product product) {
         productManager.addProduct(product);
     }
-//
-//    @PostMapping("/setStatus/{id}")
-//    public void setProductStatusAvailable(@PathVariable Long id,@RequestBody Rent rent){productManager.setProductStatusAvailable(id,rent);}
+
 }
