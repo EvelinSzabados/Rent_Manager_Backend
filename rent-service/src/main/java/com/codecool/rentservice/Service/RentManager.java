@@ -31,7 +31,7 @@ public class RentManager {
 
     public List<Rent> listEveryRent() {
         List<Rent> allRent = rentRepository.findAll();
-//        addProductDetailsToRent(allRent,false);
+        addProductDetailsToRent(allRent,false);
         for(Rent rent : allRent){
             Customer customer = customerCaller.getCustomerById("/" + rent.getCustomer_id());
             rent.setCustomer(customer);
@@ -114,37 +114,34 @@ public class RentManager {
 
     }
 
-//    private void addProductDetailsToRent(List<Rent> allRent,boolean statusAvailable) {
-//        for (Rent rent : allRent) {
-//            List<RentedProducts> rentedProductsPerRent = new ArrayList<>();
-//            for (String prod : rent.getRentedProducts()) {
-//
+    private void addProductDetailsToRent(List<Rent> allRent,boolean statusAvailable) {
+        for (Rent rent : allRent) {
+            List<RentedProducts> rentedProductsPerRent = new ArrayList<>();
+            for (String prod : rent.getRentedProducts()) {
+
+                RentedProducts product = productCaller.getRentedProductByRentId("/"+Long.valueOf(prod));
 //                Optional<Product> product = productRepository.findById(Long.valueOf(prod));
-//                if(statusAvailable){
-//                    if(product.get().getStatus().getId() != 1){
+                if(statusAvailable){
+                    if(product.getStatus().getId() != 1){
+                        rentedProductsPerRent.add(product);
 //                        RentedProducts rentedProd = RentedProducts.builder().id(product.get().getId())
 //                                .cost(product.get().getPrice())
 //                                .name(product.get().getName())
 //                                .status(product.get().getStatus())
 //                                .build();
 //                        rentedProductsPerRent.add(rentedProd);
-//                        if(rentedProductsPerRent.size() !=0){
-//
-//                        }
-//                        rent.setRentedProductsDetails(rentedProductsPerRent);
-//                    }
-//                }else{
-//                    RentedProducts rentedProd = RentedProducts.builder().id(product.get().getId())
-//                            .cost(product.get().getPrice())
-//                            .name(product.get().getName()).status(product.get().getStatus()).build();
-//                    rentedProductsPerRent.add(rentedProd);
-//
-//                    rent.setRentedProductsDetails(rentedProductsPerRent);
-//                }
-//
-//            }
-//
-//        }
-//    }
+                        if(rentedProductsPerRent.size() !=0){
+                            rent.setRentedProductsDetails(rentedProductsPerRent);
+                        }
+                    }
+                }else{
+                    rentedProductsPerRent.add(product);
+                    rent.setRentedProductsDetails(rentedProductsPerRent);
+                }
+
+            }
+
+        }
+    }
 
 }

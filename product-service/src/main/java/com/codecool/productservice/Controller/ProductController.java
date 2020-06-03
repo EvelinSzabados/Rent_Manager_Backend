@@ -1,7 +1,9 @@
 package com.codecool.productservice.Controller;
 
+import com.codecool.productservice.Model.Category;
 import com.codecool.productservice.Model.Product;
 import com.codecool.productservice.Model.Status;
+import com.codecool.productservice.Repository.CategoryCaller;
 import com.codecool.productservice.Repository.ProductRepository;
 import com.codecool.productservice.Service.ProductManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ public class ProductController {
     private ProductManager productManager;
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private CategoryCaller categoryCaller;
 
     @GetMapping("/all")
     public List<Product> getAllProducts() {
@@ -37,7 +41,11 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public Optional<Product> getProductById(@PathVariable Long id){
-        return productRepository.findById(id);
+
+        Optional<Product> product = productRepository.findById(id);
+        Category category = categoryCaller.getCategoryById("/" + product.get().getCategory_id());
+        product.get().setCategory(category);
+        return product;
     }
 
     @DeleteMapping("/delete")

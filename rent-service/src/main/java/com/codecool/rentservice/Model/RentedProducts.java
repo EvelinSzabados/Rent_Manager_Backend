@@ -17,6 +17,7 @@ public class RentedProducts {
     private int category_id;
     private int cost;
     private Status status;
+    private Category category;
 
 
 }
