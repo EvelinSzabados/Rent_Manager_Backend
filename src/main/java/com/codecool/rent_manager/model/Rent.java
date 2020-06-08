@@ -34,7 +34,7 @@ public class Rent {
     @Column(name="isback")
     private boolean isBack;
 
-    @Column(name="enddate")
+    @Column(name="end_date")
     private LocalDate endDate;
 
     @ElementCollection
