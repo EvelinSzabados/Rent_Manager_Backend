@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.codecool.rent_manager.RentManagerApplication
+web: java -jar target/RentManagerApplication-1.0.0.jar
