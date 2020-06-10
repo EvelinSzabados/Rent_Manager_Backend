@@ -57,7 +57,7 @@ public class AuthController {
 
     private void addTokenToCookie(HttpServletResponse response, String token) {
         ResponseCookie cookie = ResponseCookie.from("token", token)
-                .domain("netlify.app") // should be parameterized
+                .domain("rent-manager.netlify.app") // should be parameterized
                 .sameSite("Strict")  // CSRF
 //                .secure(true)
                 .maxAge(Duration.ofHours(24))
@@ -75,7 +75,7 @@ public class AuthController {
                         .filter(cookie -> cookie.getName().equals("token"))
                         .findFirst();
         ResponseCookie cookie = ResponseCookie.from("token", jwtToken.toString())
-                .domain("localhost")
+                .domain("rent-manager.netlify.app")
                 .sameSite("Strict")
                 .maxAge(0)
                 .httpOnly(true)
