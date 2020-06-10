@@ -65,6 +65,10 @@ public class AuthController {
                 .path("/")
                 .build();
         response.addHeader("Set-Cookie", cookie.toString());
+        response.addHeader("Access-Control-Allow-Origin", "http://rent-manager.netlify.app");
+        response.addHeader("Access-Control-Allow-Credentials", "true");
+        response.addHeader("Access-Control-Allow-Methods", "GET, POST,PUT,DELETE");
+        response.addHeader("Access-Control-Allow-Headers"," Content-Type, *");
 
     }
 
