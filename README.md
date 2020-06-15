@@ -33,3 +33,12 @@ On the "service-merge" branch there is a modified version of the project, separa
 <br>
 <b>Deployment still in process</b>
 For deployment, secured enpoints needed to be available because of crossdomain cookie problem.
+
+### Install
+
+Clone or the download the repo. Open as Maven project by pom.xml.
+<br>
+## Service merge branch:
+<br>
+ Open as Maven project, database files can be found in Resources/Database/Init.
+ <br>On the Services tab in IntelliJ run each microservice - first run Rent Manager Application with Zuul, then Service registry - after these run other services.
