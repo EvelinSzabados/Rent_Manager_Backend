@@ -42,3 +42,7 @@ Clone or the download the repo. Open as Maven project by pom.xml.
 <br>
  Open as Maven project, database files can be found in Resources/Database/Init.
  <br>On the Services tab in IntelliJ run each microservice - first run Rent Manager Application with Zuul, then Service registry - after these run other services.
+ <br>
+ <img src="https://i.ibb.co/MsBzpMq/services.jpg">
+ <br>
+ These services should be displayed in Maven. If not displayed, add them manually by clicking + --> add pom.xml file of module
